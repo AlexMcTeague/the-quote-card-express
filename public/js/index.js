@@ -26,15 +26,17 @@ const quotes = [
 
 function loopThroughQuotes() {
     let quoteIndex = 0;
+
     setInterval(() => {
-        if (quoteIndex < quotes.length) {
-            elements.quote.textContent = quotes[quoteIndex].quote;
-            elements.author.textContent = quotes[quoteIndex].author;
-            quoteIndex++;
-        } else {
+        quoteIndex++;
+        if (quoteIndex >= quotes.length) {
             quoteIndex = 0;
         }
+        elements.quote.textContent = quotes[quoteIndex].quote;
+        elements.author.textContent = quotes[quoteIndex].author;
     }, 3000);
 }
 
-setTimeout(loopThroughQuotes, 3000);
+elements.quote.textContent = quotes[0].quote;
+elements.author.textContent = quotes[0].author;
+loopThroughQuotes();
