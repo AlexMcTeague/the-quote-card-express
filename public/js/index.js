@@ -5,6 +5,22 @@ const elements = {
     author: document.getElementById("author"),
 };
 
+async function getRandomImage() {
+    const client_id = "";
+    const endpoint = `https://api.unsplash.com/photos/random/?client_id=${client_id}`;
+    try {
+        const response = await fetch(endpoint);
+        const returnedData = await response.json();
+        const receivedPhotoUrl = returnedData.urls.regular;
+
+        const imgDiv = document.querySelector(".background-img");
+        imgDiv.style.backgroundImage = `url("${receivedPhotoUrl}")`;
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+/*
 const quotes = [
     {
         quote: "All hands! Abandon ship!",
@@ -40,3 +56,7 @@ function loopThroughQuotes() {
 elements.quote.textContent = quotes[0].quote;
 elements.author.textContent = quotes[0].author;
 loopThroughQuotes();
+*/
+
+// TODO: Fix that the built-in image flashes before being replaced by the random one
+getRandomImage();
